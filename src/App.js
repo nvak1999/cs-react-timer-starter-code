@@ -1,4 +1,3 @@
-import { useState } from "react";
 import useTimer from "./useTimer";
 import { formatTime } from "./formatTime";
 function App() {

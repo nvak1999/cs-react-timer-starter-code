@@ -4,11 +4,11 @@ const useTimer = (init = 0) => {
   const [time, setTime] = useState(new Date(0, 0, 0, 0, 0, 0));
   const [isStart, setIsStart] = useState("");
   const [refInterval, setRefInterval] = useState(null);
-  const [resetTime, setResetTime] = useState(new Date(0, 0, 0, 0, 0, 0));
-  const [stop, setStop] = useState(time);
+
   const active = useRef(null);
 
   useEffect(() => {
+    const resetTime = new Date(0, 0, 0, 0, 0, 0);
     const currenTime = time;
     switch (isStart) {
       case "stop":
@@ -32,7 +32,7 @@ const useTimer = (init = 0) => {
         break;
       default:
     }
-  }, [time, isStart, resetTime]);
+  }, [time, isStart]);
 
   const startTimer = () => {
     setIsStart("start");
@@ -41,6 +41,7 @@ const useTimer = (init = 0) => {
   const stopTimer = () => {
     setIsStart("stop");
     setRefInterval(time);
+    console.log(refInterval);
   };
   const resetTimer = () => {
     setIsStart("reset");
