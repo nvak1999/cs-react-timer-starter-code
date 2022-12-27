@@ -1,5 +1,6 @@
-import useTimer from "./useTimer";
 import { formatTime } from "./formatTime";
+import useTimer from "./useTimer";
+
 function App() {
   const { time, startTimer, stopTimer, resetTimer, active } = useTimer(0);
 

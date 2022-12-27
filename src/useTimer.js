@@ -1,50 +1,29 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
-const useTimer = (init = 0) => {
-  const [time, setTime] = useState(new Date(0, 0, 0, 0, 0, 0));
-  const [isStart, setIsStart] = useState("");
-  const [refInterval, setRefInterval] = useState(null);
+const useTimer = (ini = 0) => {
+  const [time, setTime] = useState(0);
 
-  const active = useRef(null);
-
-  useEffect(() => {
-    const resetTime = new Date(0, 0, 0, 0, 0, 0);
-    const currenTime = time;
-    switch (isStart) {
-      case "stop":
-        setTime(currenTime);
-        break;
-      case "start":
-        setTimeout(() => {
-          const newTime = new Date(
-            0,
-            0,
-            0,
-            time.getHours(),
-            time.getMinutes(),
-            time.getSeconds() + 1
-          );
-          setTime(newTime);
-        }, 1000);
-        break;
-      case "reset":
-        setTime(resetTime);
-        break;
-      default:
-    }
-  }, [time, isStart]);
+  const isStart = useRef(false);
+  const active = useRef();
+  const refInterval = useRef(0);
 
   const startTimer = () => {
-    setIsStart("start");
+    isStart.current = true;
+    if (isStart.current) {
+      refInterval.current = setInterval(() => {
+        setTime((time) => time + 1);
+      }, 1000);
+    }
     active.current.disabled = true;
   };
   const stopTimer = () => {
-    setIsStart("stop");
-    setRefInterval(time);
-    console.log(refInterval);
+    isStart.current = false;
+    clearInterval(refInterval.current);
   };
   const resetTimer = () => {
-    setIsStart("reset");
+    isStart.current = false;
+    clearInterval(refInterval.current);
+    setTime(0);
     active.current.disabled = false;
   };
 
