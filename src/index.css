@@ -53,6 +53,10 @@ p {
   background-color: var(--text-shadow-color);
   box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .timer__display {
 }
@@ -63,6 +67,7 @@ p {
 }
 
 .button__wrapper {
+  margin: 0;
   display: flex;
   width: 35vw;
   padding: 1em;
@@ -88,10 +93,10 @@ p {
 .button:disabled {
   background-color: rgb(170, 164, 164);
 }
-/* .button.active {
+.button.active {
   border: 1px solid var(--text-main-color);
   background-color: var(--text-main-color);
-} */
+}
 @media only screen and (max-device-width: 1280px) {
   * {
     font-size: 0.9em;
