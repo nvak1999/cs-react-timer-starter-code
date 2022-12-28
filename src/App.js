@@ -6,7 +6,9 @@ function App() {
 
   return (
     <div className="App container">
-      <h1>Coder Timer</h1>
+      <h1>
+        <span>Coder</span> <span id="time">Timer</span>
+      </h1>
       <div className="timer__wrapper">
         <div className="timer__display">
           <p>{formatTime(time)}</p>
